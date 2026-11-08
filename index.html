@@ -493,7 +493,7 @@ img{max-width:100%;display:block}
 
   <!-- GARDEN -->
   <div class="page" id="page-flowers">
-    <div class="page-head"><h2>Our Little Garden</h2><p>tap each heart on the tree — it hides a little message</p></div>
+    <div class="page-head"><h2>A sikret</h2><p>tap each heart on the tree — it hides a little message</p></div>
     <div class="garden-wrap">
       <div class="garden" id="garden"></div>
       <div class="msg-panel" id="flower-msg">
@@ -575,7 +575,7 @@ const CONFIG = {
     image: ""        // optional: paste an image link here (or a file like "surprise.jpg")
   },
 
-  /* --- 🌳 the little garden + hidden messages --- */
+  /* --- 🌳 A sikret + hidden messages --- */
   flowers: [
     { color:"#ff7aa2", type:"tulip",   name:"Tulip",
       message:"You're the first thing I think about when I wake up — and the last before I sleep." },
@@ -637,7 +637,7 @@ const CONFIG = {
   /* --- 🏠 menu cards (id must match a page: surprise, flowers, playlist, letter, finale) --- */
   cards: [
     { id:"surprise", emoji:"🎀", title:"A Surprise",        desc:"tap the gift — there's something inside for you" },
-    { id:"flowers",  emoji:"🌳", title:"Our Little Garden", desc:"a tree full of hearts with hidden messages" },
+    { id:"flowers",  emoji:"🌳", title:"A sikret",          desc:"a tree full of hearts with hidden messages" },
     { id:"playlist", emoji:"🎵", title:"Our Playlist",      desc:"the songs that sound like us" },
     { id:"letter",   emoji:"💌", title:"Click This",        desc:"words to keep and reread anytime" },
     { id:"finale",   emoji:"🎆", title:"One More Thing",    desc:"the last surprise of all" }
@@ -650,7 +650,7 @@ const CONFIG = {
 const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const PAGE_TITLES = {
-  home:"surprise menu", surprise:"a surprise", flowers:"our little garden",
+  home:"surprise menu", surprise:"a surprise", flowers:"a sikret",
   playlist:"our playlist", letter:"click this", finale:"the end"
 };
 
