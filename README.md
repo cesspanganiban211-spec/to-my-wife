@@ -23,6 +23,7 @@ Everything lives in one `const CONFIG` block near the bottom of `index.html`
 | `flowers` | each heart in the tree + its hidden message |
 | `songs` | the playlist (title/artist + link) |
 | `letter` | the love letter |
+| `apologies` | the 20 gentle apologies |
 | `finale` | the last message + fireworks |
 
 ## GitHub Pages

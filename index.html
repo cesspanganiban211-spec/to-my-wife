@@ -18,6 +18,7 @@ Everything you want to change lives in the CONFIG block near the bottom of this 
    ♡  flowers        -> each heart in the tree + its hidden message
    ♡  songs          -> your playlist (title/artist + link, or a Spotify track id)
    ♡  letter         -> the love letter
+   ♡  apologies      -> the 20 gentle apologies
    ♡  finale         -> the last surprise message + fireworks!
 
 Then just double-click this file to open it. To share it, send the file (or upload
@@ -190,6 +191,7 @@ img{max-width:100%;display:block}
 .card{
   position:relative;background:#fff;border-radius:26px;padding:26px 22px 24px;text-align:left;
   box-shadow:var(--shadow-sm);border:1px solid #fff;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
   transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s;cursor:pointer;
 }
 .card::after{
@@ -357,6 +359,24 @@ img{max-width:100%;display:block}
 .letter-paper p{font-size:1.02rem;line-height:2;color:#4a3340;margin:0 0 18px;opacity:0;animation:fadeUp .6s forwards}
 .letter-paper .sign{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--rose);text-align:right;margin-top:10px;opacity:0;animation:fadeUp .7s .5s forwards}
 .letter-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* ================= APOLOGIES ================= */
+.apolo-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;align-items:stretch}
+.apolo{
+  position:relative;background:#fff;border-radius:22px;padding:20px 24px 20px 76px;
+  box-shadow:var(--shadow-sm);border:1px solid #fff;display:flex;align-items:center;min-height:94px;
+}
+.apolo::before{
+  content:"";position:absolute;left:16px;top:15px;bottom:15px;width:46px;border-radius:16px;
+  background:linear-gradient(180deg,#fff0f6,#ffe1ec);
+}
+.apolo .n{
+  position:absolute;left:16px;top:15px;bottom:15px;width:46px;z-index:1;
+  display:grid;place-items:center;font-family:'Dancing Script',cursive;
+  font-size:1.75rem;color:var(--rose);
+}
+.apolo p{margin:0;font-size:.99rem;line-height:1.72;color:var(--ink)}
+.apolo:nth-child(even){background:#fffbfd}
 
 /* ================= FINALE ================= */
 .finale{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:20px;position:relative;z-index:3}
@@ -530,6 +550,12 @@ img{max-width:100%;display:block}
     </div>
   </div>
 
+  <!-- APOLOGIES -->
+  <div class="page" id="page-apologies">
+    <div class="page-head"><h2>Open this</h2><p>20 gentle apologies for her</p></div>
+    <div class="apolo-list" id="apologies"></div>
+  </div>
+
   <!-- FINALE -->
   <div class="page" id="page-finale">
     <div class="finale">
@@ -626,6 +652,30 @@ const CONFIG = {
     sign: "yours always,"
   },
 
+  /* --- 🤍 20 gentle apologies for her --- */
+  apologies: [
+    "i'm sorry, love, if i've made things harder for you when all i ever wanted was to make you feel loved.",
+    "i'm sorry for the times i didn't understand what you were feeling, even when you needed me to.",
+    "i'm sorry if my own worries sometimes made you feel like you had to hide yours.",
+    "i'm sorry, babyyy, if there were moments when you needed comfort from me but i didn't know how to give it.",
+    "i'm sorry if loving me has ever felt exhausting instead of comforting.",
+    "i'm sorry for the times i overthought things instead of simply listening to you.",
+    "i'm sorry if i made you feel like you had to explain yourself over and over just to be understood.",
+    "i'm sorry for not always noticing when you were silently struggling, love.",
+    "i'm sorry if i ever made you feel that your feelings were too much for me.",
+    "i'm sorry for the moments when my actions didn't reflect how much i appreciate you.",
+    "i'm sorry if i unintentionally added pressure to days that were already difficult for you.",
+    "i'm sorry, love. you deserve patience, understanding, and a safe space to be yourself.",
+    "i'm sorry if i made you feel like you had to choose between taking care of yourself and taking care of us.",
+    "i'm sorry for the times i couldn't find the right words when you needed me to understand.",
+    "i'm sorry if i ever made you question whether your feelings mattered to me. they always do.",
+    "i'm sorry for the things i could've handled more gently. i'm still learning how to love and understand you better.",
+    "i'm sorry if i haven't always given you the reassurance you needed. i never wanted you to feel alone in this.",
+    "i'm sorry for the misunderstandings and the little things that may have slowly become heavy on your heart.",
+    "i'm sorry if somewhere along the way, we forgot to take care of ourselves while trying to take care of our relationship.",
+    "and most of all, i'm sorry for the moments when you didn't feel as loved, appreciated, or understood as you deserve to be."
+  ],
+
   /* --- 🎆 finale (with fireworks!) --- */
   finale: {
     title: "Surprise, my love 🎆",
@@ -634,10 +684,11 @@ const CONFIG = {
     stampYear: "2026"
   },
 
-  /* --- 🏠 menu cards (id must match a page: surprise, flowers, playlist, letter, finale) --- */
+  /* --- 🏠 menu cards (id must match a page: surprise, flowers, apologies, playlist, letter, finale) --- */
   cards: [
     { id:"surprise", emoji:"🎀", title:"A Surprise",        desc:"tap the gift — there's something inside for you" },
-    { id:"flowers",  emoji:"🌳", title:"A sikret",          desc:"a tree full of hearts with hidden messages" },
+    { id:"flowers",  emoji:"",   title:"A sikret",          desc:"a tree full of hearts with hidden messages" },
+    { id:"apologies",emoji:"🤍", title:"Open this",         desc:"20 gentle apologies for her" },
     { id:"playlist", emoji:"🎵", title:"Our Playlist",      desc:"the songs that sound like us" },
     { id:"letter",   emoji:"💌", title:"Click This",        desc:"words to keep and reread anytime" },
     { id:"finale",   emoji:"🎆", title:"One More Thing",    desc:"the last surprise of all" }
@@ -651,7 +702,7 @@ const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const PAGE_TITLES = {
   home:"surprise menu", surprise:"a surprise", flowers:"a sikret",
-  playlist:"our playlist", letter:"click this", finale:"the end"
+  apologies:"open this", playlist:"our playlist", letter:"click this", finale:"the end"
 };
 
 /* ---------- floating hearts ---------- */
@@ -950,13 +1001,23 @@ function renderCards(){
     el.className = "card fade-in";
     el.style.animationDelay = (i * 70) + "ms";
     el.innerHTML = `
-      <span class="emoji">${c.emoji}</span>
+      ${c.emoji ? `<span class="emoji">${c.emoji}</span>` : ""}
       <h3>${c.title}</h3>
       <p>${c.desc}</p>
       <span class="go">open ›</span>`;
     el.addEventListener("click", ()=> go(c.id));
     box.appendChild(el);
   });
+}
+
+/* 20 gentle apologies */
+function renderApologies(){
+  const box = $("#apologies");
+  box.innerHTML = CONFIG.apologies.map((t, i)=>`
+    <div class="apolo fade-in" style="animation-delay:${Math.min(i * 55, 700)}ms">
+      <span class="n">${i + 1}</span>
+      <p>${t}</p>
+    </div>`).join("");
 }
 
 /* =====================================================================
@@ -1213,6 +1274,7 @@ renderSurprise();
 renderGarden();
 renderSongs();
 buildLetter();
+renderApologies();
 renderFinale();
 setupMusic();
 go("home", true);
