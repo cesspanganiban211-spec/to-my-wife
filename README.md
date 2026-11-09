@@ -10,6 +10,11 @@ Just double-click `index.html`, or open it from the live site:
 
 **https://cesspanganiban211-spec.github.io/to-my-wife/**
 
+To share it, show this QR code and let her scan it — it opens the site above:
+
+- `qr.png` (900×900) — also live at `https://cesspanganiban211-spec.github.io/to-my-wife/qr.png`
+- `qr.svg` — vector version for crisp printing
+
 ## Customize
 
 Everything lives in one `const CONFIG` block near the bottom of `index.html`
