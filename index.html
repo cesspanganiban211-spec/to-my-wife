@@ -687,8 +687,8 @@ const CONFIG = {
   /* --- 🏠 menu cards (id must match a page: surprise, flowers, apologies, playlist, letter, finale) --- */
   cards: [
     { id:"surprise", emoji:"🎀", title:"A Surprise",        desc:"tap the gift — there's something inside for you" },
-    { id:"flowers",  emoji:"",   title:"A sikret",          desc:"a tree full of hearts with hidden messages" },
-    { id:"apologies",emoji:"🤍", title:"Open this",         desc:"20 gentle apologies for her" },
+    { id:"flowers",  emoji:"",   title:"A sikret",          desc:"" },
+    { id:"apologies",emoji:"🤍", title:"Open this",         desc:"" },
     { id:"playlist", emoji:"🎵", title:"Our Playlist",      desc:"the songs that sound like us" },
     { id:"letter",   emoji:"💌", title:"Click This",        desc:"words to keep and reread anytime" },
     { id:"finale",   emoji:"🎆", title:"One More Thing",    desc:"the last surprise of all" }
@@ -1003,7 +1003,7 @@ function renderCards(){
     el.innerHTML = `
       ${c.emoji ? `<span class="emoji">${c.emoji}</span>` : ""}
       <h3>${c.title}</h3>
-      <p>${c.desc}</p>
+      ${c.desc ? `<p>${c.desc}</p>` : ""}
       <span class="go">open ›</span>`;
     el.addEventListener("click", ()=> go(c.id));
     box.appendChild(el);
